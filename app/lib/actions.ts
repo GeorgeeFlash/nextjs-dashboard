@@ -1,6 +1,6 @@
 'use server';
 
-import { z } from "zod";
+import { date, z } from "zod";
 import { sql } from "@vercel/postgres";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
@@ -18,8 +18,12 @@ const FormSchema = z.object({
     status: z.enum(['pending', 'paid'], {
         invalid_type_error: 'Please select an invoice status.',
     }),
-    data: z.string().nullish(),
+    date: z.string().nullish(),
 });
+
+const CustomerFormSchema = z.object({
+
+})
 
 export type State = {
     errors?: {
